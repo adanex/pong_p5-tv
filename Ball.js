@@ -1,10 +1,13 @@
 class Ball{
 	
-	constructor(x,y,w,h){
+	constructor(x,y,c,tw,th,id){
+		
 		this.x=x
 		this.y=y
-		this.w=w
-		this.h=h
+		this.c=c
+		this.tw=tw
+		this.th=th
+		this.id=id
 		this.speedX= 2 * this.direction()
 		this.speedY= 2 * this.direction()
 	}
@@ -13,17 +16,63 @@ class Ball{
 	draw(){
 		push()
 		noStroke()
-		fill('red')
-		ellipse(this.x,this.y,this.w,this.h)
+		fill(this.c)
+
+		ellipse(this.x,this.y,20,20)
 		pop()
 	}
 
 	move(){
+		if (this.x <= 0) {
+			this.speedX=this.speedX*-1
+		}else if (this.x >= this.tw) {
+			this.speedX=this.speedX*-1
+		}
+
+		if (this.y <= 0) {
+			this.speedY=this.speedY*-1
+		}else if (this.y >= this.th) {
+			this.speedY=this.speedY*-1
+		}
+
+
+
+		
 		this.x+=this.speedX
 		this.y+=this.speedY
 	}
 
-	direction(){
-		return floor(random(2))* 2 - 1
+	cambiarDireccion(){
+		this.speedX=this.speedX*-1
+		this.speedY=this.speedY*-1
 	}
+
+	
+
+	direction(){
+		
+		return floor(random(2))* 2 - 1
+
+	}
+
+	//gets
+
+	get getspeedX(){
+
+	}
+	get posX() {
+    	return this.x;
+  	}
+
+  	get posY() {
+    	return this.y;
+  	}
+
+  	get getId() {
+    	return this.id;
+  	}
+
+  	get color() {
+    	return this.c;
+  	}
 }
